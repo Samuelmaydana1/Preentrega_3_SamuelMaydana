@@ -1,4 +1,4 @@
-My Django Book Application
+Web "Biblioteca" en Django
 Descripción
 Esta aplicación web, desarrollada con Django, permite gestionar libros y sus categorías. El proyecto implementa el patrón MVT (Model-View-Template) y está diseñado para ser un sistema básico para agregar, buscar y listar libros y categorías.
 
@@ -8,48 +8,49 @@ Añadir Categoría: Permite agregar nuevas categorías para clasificar libros.
 Añadir Libro: Permite agregar libros, asociándolos con un autor y una categoría.
 Buscar Libros: Permite buscar libros en la base de datos por título.
 Listar Categorías: Muestra todas las categorías disponibles en la base de datos.
-Requisitos
-Python 3.x
-Django 4.x o superior
+
+Requisitos:
+Python 3.11.9
+Django 4.2
 Instalación
 Clona el Repositorio
 
-bash
+bash (o tu consola de preferencia)
 Copiar código
-git clone [URL DEL REPOSITORIO]
-cd [NOMBRE DEL REPOSITORIO]
+git clone https://github.com/Samuelmaydana1/Preentrega_3_SamuelMaydana.git
+cd Preentrega3
 Crea un Entorno Virtual
 
-bash
+bash (o tu consola de preferencia)
 Copiar código
 python -m venv env
 source env/bin/activate  # En Windows, usa `env\Scripts\activate`
 Instala las Dependencias
 
-bash
+bash (o tu consola de preferencia)
 Copiar código
 pip install -r requirements.txt
 Configura la Base de Datos
 
-Si estás utilizando la base de datos SQLite (por defecto), no es necesario realizar configuraciones adicionales. Si usas otra base de datos, actualiza la configuración en myproject/settings.py.
+Si estás utilizando la base de datos SQLite (por defecto), no es necesario realizar configuraciones adicionales. Si usas otra base de datos, actualiza la configuración en Preentrega3/settings.py.
 
 Realiza las Migraciones
 
-bash
+bash (o tu consola de preferencia)
 Copiar código
 python manage.py migrate
 Crea un Superusuario (Opcional)
 
 Para acceder al panel de administración de Django, crea un superusuario con el siguiente comando:
 
-bash
+bash (o tu consola de preferencia)
 Copiar código
 python manage.py createsuperuser
 Sigue las instrucciones para ingresar el nombre de usuario, correo electrónico y contraseña.
 
 Ejecuta el Servidor de Desarrollo
 
-bash
+bash (o tu consola de preferencia)
 Copiar código
 python manage.py runserver
 Abre tu navegador y visita http://127.0.0.1:8000/ para ver la aplicación en funcionamiento.
@@ -58,31 +59,29 @@ Uso
 Funcionalidades Principales
 Añadir Autor
 
-Navega a http://127.0.0.1:8000/add_author/
+Navega a http://127.0.0.1:8000/agregar_autor/
 Completa el formulario para agregar un nuevo autor.
 Añadir Categoría
 
-Navega a http://127.0.0.1:8000/add_category/
+Navega a http://127.0.0.1:8000/agregar_categoria/
 Completa el formulario para agregar una nueva categoría.
 Añadir Libro
 
-Navega a http://127.0.0.1:8000/add_book/
+Navega a http://127.0.0.1:8000/agregar_libro/
 Completa el formulario para agregar un nuevo libro, seleccionando un autor y una categoría previamente agregados.
 Buscar Libros
 
-Navega a http://127.0.0.1:8000/search_books/
+Navega a http://127.0.0.1:8000/buscar_libros/
 Usa el formulario para buscar libros por título.
 Listar Categorías
 
-Navega a http://127.0.0.1:8000/list_categories/
-Visualiza todas las categorías disponibles.
 Estructura del Proyecto
-myproject/: Directorio del proyecto principal.
+Preentrega3/: Directorio del proyecto principal.
 
 settings.py: Configuración del proyecto Django.
 urls.py: Rutas del proyecto.
 wsgi.py: Punto de entrada WSGI para servidores de aplicaciones.
-myapp/: Aplicación dentro del proyecto.
+AppSamuel/: Aplicación dentro del proyecto.
 
 models.py: Definición de los modelos (Autor, Categoría, Libro).
 views.py: Definición de las vistas (funcionalidades).
@@ -104,6 +103,6 @@ Este proyecto está licenciado bajo la Licencia MIT. Puedes usar, modificar y di
 Contacto
 Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
 
-Nombre: [Tu Nombre]
-Email: [Tu Email]
-GitHub: [Tu Perfil de GitHub]
+Nombre: Samuel Maydana
+Email: samuelmaydana@gmail.com
+GitHub: https://github.com/Samuelmaydana1
