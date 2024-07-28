@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 class Autor(models.Model):
     nombre = models.CharField(max_length=100)
@@ -8,10 +9,10 @@ class Autor(models.Model):
         return self.nombre
 
 class Categoria(models.Model):
-    titulo = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.titulo
+        return self.categoria
 
 class Libro(models.Model):
     titulo = models.CharField(max_length=200)
