@@ -4,7 +4,7 @@ from .models import Autor, Categoria, Libro
 class AutorForm(forms.ModelForm):
     class Meta:
         model = Autor
-        fields = ['nombre', 'email']
+        fields = ['nombre', 'apellido']
 
 class CategoriaForm(forms.ModelForm):
     class Meta:
