@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from AppSamuel.models import Autor, Categoria, Libro
-from AppSamuel.forms import AutorForm, CategoriaForm, LibroForm, BuscarLibroForm
-
-def inicio(request):
-    return render(request, 'AppSamuel/inicio.html')
+from AppSamuel.forms import AutorForm, CategoriaForm, LibroForm
 
 def agregar_autor(request):
     if request.method == 'POST':
@@ -38,7 +36,8 @@ def agregar_libro(request):
 def buscar_libros(request):
     query = request.GET.get('query', '')
     libros = Libro.objects.filter(titulo__icontains=query)
-    autores = Autor.objects.filter(nombre__icontains=query)
+    autores = Autor.objects.filter(
+    Q(nombre__icontains=query) | Q(apellido__icontains=query))
     categorias = Categoria.objects.filter(categoria__icontains=query)
 
     return render(request, 'AppSamuel/buscar_libros.html', {
