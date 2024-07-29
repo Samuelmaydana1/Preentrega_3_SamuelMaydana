@@ -68,7 +68,7 @@ Navega a http://127.0.0.1:8000/agregar_libro/
 Completa el formulario para agregar un nuevo libro, seleccionando un autor y una categoría previamente agregados.
 
 Buscar Libros
-Navega a http://127.0.0.1:8000/buscar_libros/
+Navega a http://127.0.0.1:8000
 Usa el formulario para buscar libros por título.
 
 Estructura del Proyecto
