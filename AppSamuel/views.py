@@ -11,7 +11,7 @@ def agregar_autor(request):
             return redirect('agregar_autor')
     else:
         form = AutorForm()
-    return render(request, 'AppSamuel/agregar_autor.html', {'form': form})
+    return render(request, 'AppSamuel/agregar.html', {'form': form})
 
 def agregar_categoria(request):
     if request.method == 'POST':
@@ -21,7 +21,7 @@ def agregar_categoria(request):
             return redirect('agregar_categoria')
     else:
         form = CategoriaForm()
-    return render(request, 'AppSamuel/agregar_categoria.html', {'form': form})
+    return render(request, 'AppSamuel/agregar.html', {'form': form})
 
 def agregar_libro(request):
     if request.method == 'POST':
@@ -31,7 +31,7 @@ def agregar_libro(request):
             return redirect('agregar_libro')
     else:
         form = LibroForm()
-    return render(request, 'AppSamuel/agregar_libro.html', {'form': form})
+    return render(request, 'AppSamuel/agregar.html', {'form': form})
 
 def buscar_libros(request):
     query = request.GET.get('query', '')
