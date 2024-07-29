@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from AppSamuel import views
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),

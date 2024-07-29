@@ -1,5 +1,6 @@
 from django import forms
-from .models import Autor, Categoria, Libro
+from AppSamuel.models import Autor, Categoria, Libro
+from datetime import datetime
 
 class AutorForm(forms.ModelForm):
     class Meta:
@@ -14,7 +15,10 @@ class CategoriaForm(forms.ModelForm):
 class LibroForm(forms.ModelForm):
     class Meta:
         model = Libro
-        fields = ['titulo', 'autor', 'categoria', 'fecha_de_publicacion']
+        fields = ['titulo', 'autor', 'categoria', 'año_de_publicacion']
+        widgets = {
+            'año_de_publicacion': forms.NumberInput(attrs={'max': datetime.now().year}),
+        }
 
 class BuscarLibroForm(forms.Form):
     query = forms.CharField(label='Buscar', max_length=100)

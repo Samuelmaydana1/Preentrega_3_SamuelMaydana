@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Autor, Categoria, Libro
-from .forms import AutorForm, CategoriaForm, LibroForm, BuscarLibroForm
+from AppSamuel.models import Autor, Categoria, Libro
+from AppSamuel.forms import AutorForm, CategoriaForm, LibroForm, BuscarLibroForm
 
 def inicio(request):
     return render(request, 'AppSamuel/inicio.html')
