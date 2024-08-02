@@ -1,0 +1,25 @@
+{% extends 'vbc/base.html' %}
+
+{% load static %}
+
+{% block title %} Lista Autores {% endblock title %}
+
+{% block main %}
+    {% for autor in autores  %}
+        <p>Nombre y Apellido: {{autor.nombre}}, {{autor.apellido}}</p>
+        
+        <a href="{% url 'DetalleAutor' autor.pk%}">Ver</a>
+        |
+        <a href="{% url 'EditarAutor' autor.pk%}">Editar</a>
+        |
+        <a href="{% url 'BorrarAutor' autor.pk %}">Borrar</a>
+        
+    {% endfor %}
+    
+    <form action="{% url 'NuevoAutor' %}" method="GET">
+            <button class="btn btn-primary" type="submit">Nuevo Autor</button>
+        </div>
+    </form>
+
+{% endblock main %}
+

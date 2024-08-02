@@ -1,0 +1,16 @@
+{% extends 'AppSamuel/base.html' %}
+
+{% load static %}
+
+{% block title %} Borrar Autor {% endblock title %}
+
+{% block main %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        ¿Estás seguro que deseas borrar el autor {{autor.nombre}} {{autor.apellido}}?
+        
+        <input type="submit" value="Eliminar">
+
+    </form>
+{% endblock main %}

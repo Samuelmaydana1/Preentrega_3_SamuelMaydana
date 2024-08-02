@@ -1,0 +1,18 @@
+{% extends 'vbc/base.html' %}
+
+{% load static %}
+
+{% block title %} Crear Curso {% endblock title %}
+
+{% block main %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Crear">
+
+    </form>
+{% endblock main %}

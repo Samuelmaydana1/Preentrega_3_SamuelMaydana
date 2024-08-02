@@ -1,0 +1,14 @@
+{% extends 'vbc/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle Autor {% endblock title %}
+
+{% block main %}
+    <p>Nombre : <i>{{autor.nombre}}</i></p> 
+    <p>Apellido : <i>{{autor.apellido}}</i></p>
+
+    <a href="{% url 'ListaAutores' %}">Regresar</a>
+
+
+{% endblock main%}
