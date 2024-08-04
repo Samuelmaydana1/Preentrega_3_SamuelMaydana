@@ -1,0 +1,16 @@
+{% extends 'AppSamuel/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle Libro {% endblock title %}
+
+{% block main %}
+    <p>Libro: <i>{{libro.titulo}}</i></p>
+    <p>Autor: <i>{{libro.autor.nombre}} {{libro.autor.apellido}}</i></p>
+    <p>Categoria: <i>{{libro.categoria.categoria}}</i></p>
+    <p>Año de publicación: <i>{{libro.año_de_publicacion}}</i></p>
+
+    <a href="{% url 'ListaLibros' %}">Regresar</a>
+
+
+{% endblock main%}

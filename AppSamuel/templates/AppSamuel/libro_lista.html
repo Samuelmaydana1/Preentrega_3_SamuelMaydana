@@ -1,0 +1,28 @@
+{% extends 'AppSamuel/base.html' %}
+
+{% load static %}
+
+{% block title %} Lista Libros {% endblock title %}
+
+{% block main %}
+    {% for libro in libros  %}
+        <p>Libro: {{libro.titulo}}</p>
+        <p>Autor: {{libro.autor.nombre}} {{libro.autor.apellido}}</p>
+        <p>Categoria: {{libro.categoria.categoria}}</p>
+        <p>Año de publicación: {{libro.año_de_publicacion}}</p>
+        
+        <a href="{% url 'DetalleLibro' libro.pk%}">Ver</a>
+        |
+        <a href="{% url 'EditarLibro' libro.pk%}">Editar</a>
+        |
+        <a href="{% url 'BorrarLibro' libro.pk %}">Borrar</a>
+        
+    {% endfor %}
+    
+    <form action="{% url 'NuevoLibro' %}" method="GET">
+            <button class="btn btn-primary" type="submit">Nuevo Libro</button>
+        </div>
+    </form>
+
+{% endblock main %}
+

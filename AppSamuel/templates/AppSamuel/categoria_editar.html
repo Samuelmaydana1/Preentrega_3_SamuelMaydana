@@ -2,17 +2,18 @@
 
 {% load static %}
 
-{% block title %} Formulario con API {% endblock title %}
+{% block title %} Editar Categoria {% endblock title %}
 
 {% block main %}
-    <!-- En este ejemplo dejamos el action vacío ya que lo manejamos desde la vista -->
+
     <form action="" method="POST">
         {% csrf_token %}
         
         <table>
             {{ form.as_table }}
         </table>
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Guardar">
+        <a href="{% url 'ListaCategorias' %}"><input type="button" value="Cancelar"></a>
 
     </form>
 {% endblock main %}

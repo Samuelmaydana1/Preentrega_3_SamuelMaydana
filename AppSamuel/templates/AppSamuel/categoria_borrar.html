@@ -2,16 +2,16 @@
 
 {% load static %}
 
-{% block title %} Borrar Autor {% endblock title %}
+{% block title %} Borrar Categoria {% endblock title %}
 
 {% block main %}
     <form action="" method="POST">
         {% csrf_token %}
         
-        ¿Estás seguro que deseas borrar al autor {{autor.nombre}} {{autor.apellido}}?
+        ¿Estás seguro que deseas borrar la categoria {{categoria.categoria}}?
         
         <input type="submit" value="Eliminar">
-        <a href="{% url 'ListaAutores' %}"><input type="button" value="Cancelar"></a>
+        <a href="{% url 'ListaCategorias' %}"><input type="button" value="Cancelar"></a>
 
     </form>
 {% endblock main %}

@@ -1,0 +1,25 @@
+{% extends 'AppSamuel/base.html' %}
+
+{% load static %}
+
+{% block title %} Lista Categorias {% endblock title %}
+
+{% block main %}
+    {% for categoria in categorias  %}
+        <p>Categoria: {{categoria.categoria}}</p>
+        
+        <a href="{% url 'DetalleCategoria' categoria.pk%}">Ver</a>
+        |
+        <a href="{% url 'EditarCategoria' categoria.pk%}">Editar</a>
+        |
+        <a href="{% url 'BorrarCategoria' categoria.pk %}">Borrar</a>
+        
+    {% endfor %}
+    
+    <form action="{% url 'NuevaCategoria' %}" method="GET">
+            <button class="btn btn-primary" type="submit">Nueva Categoria</button>
+        </div>
+    </form>
+
+{% endblock main %}
+

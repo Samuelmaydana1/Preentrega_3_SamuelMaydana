@@ -1,0 +1,13 @@
+{% extends 'AppSamuel/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle Categoria {% endblock title %}
+
+{% block main %}
+    <p>Categoria: <i>{{categoria.categoria}}</i></p>
+
+    <a href="{% url 'ListaCategorias' %}">Regresar</a>
+
+
+{% endblock main%}

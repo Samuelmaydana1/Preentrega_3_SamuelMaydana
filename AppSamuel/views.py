@@ -53,27 +53,54 @@ class AutorDeleteView(LoginRequiredMixin, DeleteView):
 
 # Vistas basadas en Clases - Categoria
 class CategoriaListView(LoginRequiredMixin, ListView):
-    model = Autor
+    model = Categoria
     context_object_name = "categorias"
     template_name = "AppSamuel/categoria_lista.html"
 
 class CategoriaDetailView(LoginRequiredMixin, DetailView):
-    model = Autor
+    model = Categoria
     template_name = "AppSamuel/categoria_detalle.html"
 
 class CategoriaCreateView(LoginRequiredMixin, CreateView):
-    model = Autor
+    model = Categoria
     template_name = "AppSamuel/categoria_crear.html"
-    success_url = reverse_lazy("ListaAutores")
-    fields =  ["nombre", "apellido"]
+    success_url = reverse_lazy("ListaCategorias")
+    fields =  ["categoria"]
 
 class CategoriaUpdateView(LoginRequiredMixin, UpdateView):
-    model = Autor
+    model = Categoria
     template_name = "AppSamuel/categoria_editar.html"
-    success_url = reverse_lazy("ListaAutores")
-    fields =  ["nombre", "apellido"]
+    success_url = reverse_lazy("ListaCategorias")
+    fields =  ["categoria"]
 
 class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
-    model = Autor
+    model = Categoria
     template_name = "AppSamuel/categoria_borrar.html"
-    success_url = reverse_lazy("ListaAutores")
+    success_url = reverse_lazy("ListaCategorias")
+
+# Vistas basadas en Clases - Libro
+class LibroListView(LoginRequiredMixin, ListView):
+    model = Libro
+    context_object_name = "libros"
+    template_name = "AppSamuel/libro_lista.html"
+
+class LibroDetailView(LoginRequiredMixin, DetailView):
+    model = Libro
+    template_name = "AppSamuel/libro_detalle.html"
+
+class LibroCreateView(LoginRequiredMixin, CreateView):
+    model = Libro
+    template_name = "AppSamuel/libro_crear.html"
+    success_url = reverse_lazy("ListaLibros")
+    fields =  ["titulo", "autor", "categoria", "año_de_publicacion"]
+
+class LibroUpdateView(LoginRequiredMixin, UpdateView):
+    model = Libro
+    template_name = "AppSamuel/libro_editar.html"
+    success_url = reverse_lazy("ListaLibros")
+    fields =  ["titulo", "autor", "categoria", "año_de_publicacion"]
+
+class LibroDeleteView(LoginRequiredMixin, DeleteView):
+    model = Libro
+    template_name = "AppSamuel/libro_borrar.html"
+    success_url = reverse_lazy("ListaLibros")
