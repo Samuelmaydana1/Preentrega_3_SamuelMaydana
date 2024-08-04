@@ -3,7 +3,7 @@ from AppSamuel import views
 
 urlpatterns = [
     path('', views.inicio, name='Inicio' ),
-    path('', views.buscar_libros, name='BuscarLibros' ),
+    path('about', views.about, name='About'),
     path('autor/listar', views.AutorListView.as_view(), name='ListaAutores'),
     path('autor/nuevo',views.AutorCreateView.as_view(), name='NuevoAutor'),
     path('autor/<pk>',views.AutorDetailView.as_view(), name='DetalleAutor'),

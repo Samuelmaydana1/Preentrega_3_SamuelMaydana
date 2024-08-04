@@ -1,28 +1,32 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.urls import reverse_lazy
 from AppSamuel.models import Autor, Libro, Categoria
-from django.db.models import Q
 
+@login_required
 def inicio(request):
-    return render(request, 'AppSamuel/index.html')
-
-def buscar_libros(request):
     query = request.GET.get('query', '')
     libros = Libro.objects.filter(titulo__icontains=query)
     autores = Autor.objects.filter(
     Q(nombre__icontains=query) | Q(apellido__icontains=query))
     categorias = Categoria.objects.filter(categoria__icontains=query)
 
-    return render(request, 'AppSamuel/buscar_libros.html', {
+    return render(request, 'AppSamuel/index.html', {
         'query': query,
         'libros': libros,
         'autores': autores,
         'categorias': categorias
     })
+
+@login_required
+def about(request):
+    return render(request, 'AppSamuel/about.html')
 
 # Vistas basadas en Clases - Autor
 class AutorListView(LoginRequiredMixin, ListView):
@@ -30,9 +34,15 @@ class AutorListView(LoginRequiredMixin, ListView):
     context_object_name = "autores"
     template_name = "AppSamuel/autor_lista.html"
 
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 class AutorDetailView(LoginRequiredMixin, DetailView):
     model = Autor
     template_name = "AppSamuel/autor_detalle.html"
+
+    def get_login_url(self):
+        return self.login_url
 
 class AutorCreateView(LoginRequiredMixin, CreateView):
     model = Autor

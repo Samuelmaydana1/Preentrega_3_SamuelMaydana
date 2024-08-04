@@ -1,78 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
-    {% load static %}
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Biblioteca - Gestión de libros, autores y categorías" />
-        <meta name="author" content="Biblioteca Team" />
-        <title>Biblioteca</title>
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{% static 'AppSamuel/assets/favicon.ico' %}" />
-        <!-- Bootstrap icons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap) -->
-        <link href="{% static 'AppSamuel/css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
-                <a class="btn btn-primary" href="{% url 'ListaLibros' %}">Libro</a>
-                <a class="btn btn-primary" href="{% url 'ListaAutores' %}">Autor</a>
-                <a class="btn btn-primary" href="{% url 'ListaCategorias' %}">Categoría</a>
-            </div>
-        </nav>
-        <!-- Masthead -->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading -->
-                            <h1 class="mb-5">BIBLIOTECA</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Main Content -->
-            {% block main %}
-            {% endblock main %}
-        <!-- Footer -->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <ul class="list-inline mb-2">
-                            {% comment %} <li class="list-inline-item"><a href="#!">Ayuda</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contacto</a></li> {% endcomment %}
-                        </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Biblioteca 2024. Todos los derechos reservados.</p>
-                    </div>
-                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                        <ul class="list-inline mb-0">
-                            {% comment %} <li class="list-inline-item me-4">
-                                <a href="#!" aria-label="Facebook"><i class="bi-facebook fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item me-4">
-                                <a href="#!" aria-label="Twitter"><i class="bi-twitter fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!" aria-label="Instagram"><i class="bi-instagram fs-3"></i></a>
-                            </li> {% endcomment %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
-        <!-- Core theme JS -->
-        <script src="{% static 'AppSamuel/js/scripts.js' %}" defer></script>
-    </body>
-</html>
+{% extends 'AppSamuel/base.html' %}
+
+{% block main %}
+<div class="container mt-4">
+    <h1>Buscar Libros</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form action="{% url 'Inicio' %}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="query" placeholder="Buscar por título, autor o categoría..." value="{{ query }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <!-- Resultados de búsqueda -->
+    {% if query %}
+        <h2>Resultados de búsqueda para "{{ query }}"</h2>
+        
+        <!-- Libros -->
+        <h3>Libros</h3>
+        {% if libros %}
+            <ul class="list-group">
+                {% for libro in libros %}
+                    <li class="list-group-item">
+                        <strong>{{ libro.titulo }}</strong>
+                        {% if libro.autor %} - Autor: {{ libro.autor.nombre }} {{ libro.autor.apellido }} {% endif %}
+                        {% if libro.categoria %} - Categoría: {{ libro.categoria }}{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron libros.</p>
+        {% endif %}
+
+        <!-- Autores -->
+        <h3>Autores</h3>
+        {% if autores %}
+            <ul class="list-group">
+                {% for autor in autores %}
+                    <li class="list-group-item">
+                        <strong>{{ autor.nombre }} {{ autor.apellido }} </strong>
+                        <!-- Aquí puedes añadir más detalles del autor si es necesario -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron autores.</p>
+        {% endif %}
+
+        <!-- Categorías -->
+        <h3>Categorías</h3>
+        {% if categorias %}
+            <ul class="list-group">
+                {% for categoria in categorias %}
+                    <li class="list-group-item">
+                        <strong>{{ categoria.categoria }}</strong>
+                        <!-- Aquí puedes añadir más detalles de la categoría si es necesario -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron categorías.</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock main %}
