@@ -1,37 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from AppSamuel.models import Autor, Libro, Categoria
 from django.db.models import Q
-from AppSamuel.models import Autor, Categoria, Libro
-from AppSamuel.forms import AutorForm, CategoriaForm, LibroForm
 
-def agregar_autor(request):
-    if request.method == 'POST':
-        form = AutorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('agregar_autor')
-    else:
-        form = AutorForm()
-    return render(request, 'AppSamuel/agregar.html', {'form': form})
-
-def agregar_categoria(request):
-    if request.method == 'POST':
-        form = CategoriaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('agregar_categoria')
-    else:
-        form = CategoriaForm()
-    return render(request, 'AppSamuel/agregar.html', {'form': form})
-
-def agregar_libro(request):
-    if request.method == 'POST':
-        form = LibroForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('agregar_libro')
-    else:
-        form = LibroForm()
-    return render(request, 'AppSamuel/agregar.html', {'form': form})
+def inicio(request):
+    return render(request, 'AppSamuel/index.html')
 
 def buscar_libros(request):
     query = request.GET.get('query', '')
@@ -46,3 +23,57 @@ def buscar_libros(request):
         'autores': autores,
         'categorias': categorias
     })
+
+# Vistas basadas en Clases - Autor
+class AutorListView(LoginRequiredMixin, ListView):
+    model = Autor
+    context_object_name = "autores"
+    template_name = "AppSamuel/autor_lista.html"
+
+class AutorDetailView(LoginRequiredMixin, DetailView):
+    model = Autor
+    template_name = "AppSamuel/autor_detalle.html"
+
+class AutorCreateView(LoginRequiredMixin, CreateView):
+    model = Autor
+    template_name = "AppSamuel/autor_crear.html"
+    success_url = reverse_lazy("ListaAutores")
+    fields =  ["nombre", "apellido"]
+
+class AutorUpdateView(LoginRequiredMixin, UpdateView):
+    model = Autor
+    template_name = "AppSamuel/autor_editar.html"
+    success_url = reverse_lazy("ListaAutores")
+    fields =  ["nombre", "apellido"]
+
+class AutorDeleteView(LoginRequiredMixin, DeleteView):
+    model = Autor
+    template_name = "AppSamuel/autor_borrar.html"
+    success_url = reverse_lazy("ListaAutores")
+
+# Vistas basadas en Clases - Categoria
+class CategoriaListView(LoginRequiredMixin, ListView):
+    model = Autor
+    context_object_name = "categorias"
+    template_name = "AppSamuel/categoria_lista.html"
+
+class CategoriaDetailView(LoginRequiredMixin, DetailView):
+    model = Autor
+    template_name = "AppSamuel/categoria_detalle.html"
+
+class CategoriaCreateView(LoginRequiredMixin, CreateView):
+    model = Autor
+    template_name = "AppSamuel/categoria_crear.html"
+    success_url = reverse_lazy("ListaAutores")
+    fields =  ["nombre", "apellido"]
+
+class CategoriaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Autor
+    template_name = "AppSamuel/categoria_editar.html"
+    success_url = reverse_lazy("ListaAutores")
+    fields =  ["nombre", "apellido"]
+
+class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
+    model = Autor
+    template_name = "AppSamuel/categoria_borrar.html"
+    success_url = reverse_lazy("ListaAutores")

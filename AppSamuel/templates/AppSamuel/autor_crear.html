@@ -1,8 +1,8 @@
-{% extends 'vbc/base.html' %}
+{% extends 'AppSamuel/base.html' %}
 
 {% load static %}
 
-{% block title %} Editar Curso {% endblock title %}
+{% block title %} Crear Curso {% endblock title %}
 
 {% block main %}
 
@@ -10,9 +10,9 @@
         {% csrf_token %}
         
         <table>
-            {{ form.as_table }}
+            {{ form.as_table}}
         </table>
-        <input type="submit" value="Guardar">
+        <input type="submit" value="Crear">
 
     </form>
 {% endblock main %}

@@ -20,10 +20,10 @@
         <!-- Navigation -->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'ListaAutores' %}">Inicio</a>
-                <a class="btn btn-primary" href="{% url 'agregar_libro' %}">Libro</a>
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+                {% comment %} <a class="btn btn-primary" href="{% url '' %}">Libro</a> {% endcomment %}
                 <a class="btn btn-primary" href="{% url 'ListaAutores' %}">Autor</a>
-                <a class="btn btn-primary" href="{% url 'agregar_categoria' %}">Categoría</a>
+                {% comment %} <a class="btn btn-primary" href="{% url '' %}">Categoría</a> {% endcomment %}
             </div>
         </nav>
         <!-- Masthead -->

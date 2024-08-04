@@ -1,8 +1,8 @@
-{% extends 'vbc/base.html' %}
+{% extends 'AppSamuel/base.html' %}
 
 {% load static %}
 
-{% block title %} Crear Curso {% endblock title %}
+{% block title %} Editar Curso {% endblock title %}
 
 {% block main %}
 
@@ -12,7 +12,7 @@
         <table>
             {{ form.as_table }}
         </table>
-        <input type="submit" value="Crear">
+        <input type="submit" value="Guardar">
 
     </form>
 {% endblock main %}

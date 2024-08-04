@@ -2,10 +2,10 @@
 
 {% block main %}
 <div class="container mt-4">
-    <h1>Buscar</h1>
+    <h1>Buscar Libros</h1>
 
     <!-- Formulario de búsqueda -->
-    <form action="{% url 'buscar_libros' %}" method="GET">
+    <form action="{% url 'BuscarLibros' %}" method="GET">
         <div class="input-group mb-3">
             <input type="text" class="form-control" name="query" placeholder="Buscar por título, autor o categoría..." value="{{ query }}">
             <button class="btn btn-primary" type="submit">Buscar</button>
