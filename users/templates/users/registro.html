@@ -8,15 +8,7 @@
 
     <div class="d-flex justify-content-center align-items-center min-vh-100">
         <div class="w-50">
-            <h2 class="text-center mb-4">Registro</h2>
-            
-            {% if messages %}
-                <div class="alert alert-info">
-                    {% for message in messages %}
-                        {{ message }}
-                    {% endfor %}
-                </div>
-            {% endif %}
+            <h2 class="text-center mb-4">Registrarse</h2>
 
             <form action="" method="POST">
                 {% csrf_token %}

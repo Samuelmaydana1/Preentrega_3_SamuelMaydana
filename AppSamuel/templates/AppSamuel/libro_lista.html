@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Lista Libros {% endblock title %}
+{% block title %} Lista libros {% endblock title %}
 
 {% block main %}
     {% for libro in libros  %}
@@ -20,7 +20,7 @@
     {% endfor %}
     
     <form action="{% url 'NuevoLibro' %}" method="GET">
-            <button class="btn btn-primary" type="submit">Nuevo Libro</button>
+            <button class="btn btn-primary" type="submit">Nuevo libro</button>
         </div>
     </form>
 

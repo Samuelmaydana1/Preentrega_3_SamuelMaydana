@@ -1,0 +1,21 @@
+{% extends 'AppSamuel/base.html' %}
+
+{% load static %}
+
+{% block title %} Editar perfil {% endblock title %}
+
+{% block main %}
+    
+    <h1>Editar perfil de {{usuario}}</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ mi_form.as_table }}
+        </table>
+        <input type="submit" value="Guardar cambios">
+        <a href="{% url 'Inicio' %}"><input type="button" value="Cancelar"></a>
+
+    </form>
+
+{% endblock main %}

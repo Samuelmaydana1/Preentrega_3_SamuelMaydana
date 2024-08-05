@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Lista Categorias {% endblock title %}
+{% block title %} Lista categorias {% endblock title %}
 
 {% block main %}
     {% for categoria in categorias  %}
@@ -17,7 +17,7 @@
     {% endfor %}
     
     <form action="{% url 'NuevaCategoria' %}" method="GET">
-            <button class="btn btn-primary" type="submit">Nueva Categoria</button>
+            <button class="btn btn-primary" type="submit">Nueva categoria</button>
         </div>
     </form>
 

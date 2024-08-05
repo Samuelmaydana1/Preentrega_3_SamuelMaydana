@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Lista Autores {% endblock title %}
+{% block title %} Lista autores {% endblock title %}
 
 {% block main %}
     {% for autor in autores  %}
@@ -17,7 +17,7 @@
     {% endfor %}
     
     <form action="{% url 'NuevoAutor' %}" method="GET">
-            <button class="btn btn-primary" type="submit">Nuevo Autor</button>
+            <button class="btn btn-primary" type="submit">Nuevo autor</button>
         </div>
     </form>
 

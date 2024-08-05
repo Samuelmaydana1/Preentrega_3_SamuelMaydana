@@ -16,7 +16,7 @@
                 </div>
             {% endif %}
 
-            <form action="" method="POST">
+            <form action="{% url 'Login' %}" method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
                     <table>

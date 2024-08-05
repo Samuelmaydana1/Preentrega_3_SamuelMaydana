@@ -24,8 +24,8 @@
                 <a class="btn btn-primary" href="{% url 'ListaLibros' %}">Libro</a>
                 <a class="btn btn-primary" href="{% url 'ListaAutores' %}">Autor</a>
                 <a class="btn btn-primary" href="{% url 'ListaCategorias' %}">Categoría</a>
-                <a class="btn btn-primary" href="{% url 'About' %}">Acerca De</a>
-                        {# DROPDOWN PARA LA CUENTA DE USUARIO #}
+                <a class="btn btn-primary" href="{% url 'About' %}">Acerca de</a>
+                        {# dropdown cuenta de usuario #}
                         {% if request.user.is_authenticated %}
 
                             <div class="dropdown">
@@ -33,7 +33,14 @@
                                     {{ request.user.username }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'CambiarPass' %}">Cambiar contraseña</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar perfil</a></li>
+                                    <li>
+                                        <form action="{% url 'Logout' %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -44,7 +51,7 @@
                                     Cuenta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Inciar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Inciar sesión</a></li>
                                     <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
                                 </ul>
                             </div>
@@ -75,23 +82,20 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            {% comment %} <li class="list-inline-item"><a href="#!">Ayuda</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contacto</a></li> {% endcomment %}
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Biblioteca 2024. Todos los derechos reservados.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
-                            {% comment %} <li class="list-inline-item me-4">
-                                <a href="#!" aria-label="Facebook"><i class="bi-facebook fs-3"></i></a>
+                            <li class="list-inline-item me-4">
+                                <a href="https://www.facebook.com/maydanasamuel/" aria-label="Facebook"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!" aria-label="Twitter"><i class="bi-twitter fs-3"></i></a>
+                                <a href="https://github.com/Samuelmaydana1" aria-label="GitHub"><i class="bi-github fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!" aria-label="Instagram"><i class="bi-instagram fs-3"></i></a>
-                            </li> {% endcomment %}
+                                <a href="https://www.instagram.com/samuelmaydana/" aria-label="Instagram"><i class="bi-instagram fs-3"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
