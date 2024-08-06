@@ -2,12 +2,18 @@
 
 {% load static %}
 
-{% block title %} Detalle categoria {% endblock title %}
+{% block title %} Detalle categoría {% endblock title %}
 
 {% block main %}
-    <p>Categoria: <i>{{categoria.categoria}}</i></p>
-
-    <a href="{% url 'ListaCategorias' %}">Regresar</a>
-
-
+<div class="container mt-4">
+    <h2>Detalle de la categoría</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Categoría: <i>{{ categoria.categoria }}</i></h5>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'ListaCategorias' %}" class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
 {% endblock main%}

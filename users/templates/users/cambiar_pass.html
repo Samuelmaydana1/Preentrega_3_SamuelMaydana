@@ -21,8 +21,10 @@
             {% endfor %}
         </table>
 
-        <input type="submit" value="Guardar">
-        <a href="{% url 'Inicio' %}"><input type="button" value="Cancelar"></a>
+        <div class="mb-3">
+            <input type="submit" value="Guardar cambios" class="btn btn-primary">
+            <a href="{% url 'Inicio' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
 
     </form>
 

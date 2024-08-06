@@ -5,12 +5,18 @@
 {% block title %} Detalle libro {% endblock title %}
 
 {% block main %}
-    <p>Libro: <i>{{libro.titulo}}</i></p>
-    <p>Autor: <i>{{libro.autor.nombre}} {{libro.autor.apellido}}</i></p>
-    <p>Categoria: <i>{{libro.categoria.categoria}}</i></p>
-    <p>Año de publicación: <i>{{libro.año_de_publicacion}}</i></p>
-
-    <a href="{% url 'ListaLibros' %}">Regresar</a>
-
-
-{% endblock main%}
+<div class="container mt-4">
+    <h2>Detalle del libro</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Título: <i>{{ libro.titulo }}</i></h5>
+            <p class="card-text"><strong>Autor:</strong> {{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
+            <p class="card-text"><strong>Categoría:</strong> {{ libro.categoria.categoria }}</p>
+            <p class="card-text"><strong>Año de publicación:</strong> {{ libro.año_de_publicacion }}</p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'ListaLibros' %}" class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
+{% endblock main %}

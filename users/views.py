@@ -65,7 +65,7 @@ def editar_perfil(request):
                         os.remove(avatar.imagen.path)
                     avatar.delete()
 
-            return redirect('Inicio')
+            return redirect('EditarPerfil')
 
     else:
         miFormulario = UserEditForm(instance=usuario)

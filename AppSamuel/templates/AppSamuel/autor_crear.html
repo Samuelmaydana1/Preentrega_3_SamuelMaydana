@@ -5,14 +5,18 @@
 {% block title %} Crear autor {% endblock title %}
 
 {% block main %}
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        
-        <table>
-            {{ form.as_table}}
-        </table>
-        <input type="submit" value="Crear">
-
-    </form>
+<div class="container mt-4">
+    <h2>Crear autor</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock main %}

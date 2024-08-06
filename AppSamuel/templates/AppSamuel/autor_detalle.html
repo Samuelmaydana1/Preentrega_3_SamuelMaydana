@@ -5,10 +5,16 @@
 {% block title %} Detalle autor {% endblock title %}
 
 {% block main %}
-    <p>Nombre: <i>{{autor.nombre}}</i></p> 
-    <p>Apellido: <i>{{autor.apellido}}</i></p>
-
-    <a href="{% url 'ListaAutores' %}">Regresar</a>
-
-
-{% endblock main%}
+<div class="container mt-4">
+    <h2>Detalle del autor</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nombre: <i>{{ autor.nombre }}</i></h5>
+            <p class="card-text"><strong>Apellido:</strong> <i>{{ autor.apellido }}</i></p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'ListaAutores' %}" class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
+{% endblock main %}
