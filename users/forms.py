@@ -33,12 +33,12 @@ class UserRegisterForm(UserCreationForm):
 class UserEditForm(UserChangeForm):
     
     password = None
-    first_name = forms.CharField(label='Nombre')
-    last_name = forms.CharField(label='Apellido')
+    first_name = forms.CharField(label='Nombre', required=False)
+    last_name = forms.CharField(label='Apellido', required=False)
     email = forms.EmailField(label="Email:")
     imagen = forms.ImageField(label="Avatar", required=False)
-    eliminar_avatar = forms.BooleanField(required=False, initial=False, label='Eliminar Avatar')
+    eliminar_avatar = forms.BooleanField(required=False, initial=False, label="Eliminar Avatar")
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'imagen']
+        fields = ['first_name', 'last_name', 'email', 'imagen', 'eliminar_avatar']
         # help_texts = {k:"" for k in fields}

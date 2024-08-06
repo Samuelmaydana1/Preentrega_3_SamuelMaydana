@@ -43,42 +43,34 @@ def editar_perfil(request):
         miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
 
         if miFormulario.is_valid():
-            
+            # Guarda los datos del formulario (esto también actualizará el usuario)
+            miFormulario.save()
+
+            # Maneja la lógica para el avatar si es necesario
             imagen = miFormulario.cleaned_data.get('imagen')
             eliminar_avatar = miFormulario.cleaned_data.get('eliminar_avatar')
 
             if imagen:
-                
                 avatar, creado = Avatar.objects.get_or_create(user=usuario)
-
-                
                 if not creado:
-                    
                     if avatar.imagen and os.path.isfile(avatar.imagen.path):
                         os.remove(avatar.imagen.path)
-
-                    
-                    avatar.imagen = imagen
-                    avatar.save()
-                else:
-                    
-                    avatar.imagen = imagen
-                    avatar.save()
+                avatar.imagen = imagen
+                avatar.save()
 
             if eliminar_avatar:
-                
                 avatar = Avatar.objects.filter(user=usuario).first()
                 if avatar:
-                    
                     if avatar.imagen and os.path.isfile(avatar.imagen.path):
                         os.remove(avatar.imagen.path)
                     avatar.delete()
 
-            
             return redirect('Inicio')
 
     else:
         miFormulario = UserEditForm(instance=usuario)
+
+    avatar_actual = Avatar.objects.filter(user=usuario).first()
 
     return render(
         request,
@@ -86,7 +78,7 @@ def editar_perfil(request):
         {
             "mi_form": miFormulario,
             "usuario": usuario,
-            "avatar": Avatar.objects.filter(user=usuario).first()  # Pasa el avatar actual a la plantilla
+            "avatar": avatar_actual
         }
     )
 
