@@ -27,35 +27,41 @@
                 <a class="btn btn-primary" href="{% url 'About' %}">Acerca de</a>
                         {# dropdown cuenta de usuario #}
                         {% if request.user.is_authenticated %}
-
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; height: auto;">
+                                <span style="display: flex; align-items: center;">
+                                    {% if request.user.avatar.imagen %}
+                                        <img src="{{ request.user.avatar.imagen.url }}" alt="Avatar del usuario" height="30" width="30" style="margin-right: 5px;">
+                                    {% else %}
+                                        <img src="{% static 'AppSamuel/avatares/avatar-default.png' %}" alt="Avatar por defecto" height="30" width="30">
+                                    {% endif %}
                                     {{ request.user.username }}
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{% url 'CambiarPass' %}">Cambiar contraseña</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar perfil</a></li>
-                                    <li>
-                                        <form action="{% url 'Logout' %}" method="post" style="display: inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="dropdown-item">Cerrar sesión</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        {% else %}
-
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Cuenta
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Inciar sesión</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
-                                </ul>
-                            </div>
-                        {% endif %}
+                                </span>
+                            </button>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{% url 'CambiarPass' %}">Cambiar contraseña</a></li>
+                                <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar perfil</a></li>
+                                <li>
+                                    <form action="{% url 'Logout' %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Cuenta
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    
                     </ul>
                 </div>
             </div>

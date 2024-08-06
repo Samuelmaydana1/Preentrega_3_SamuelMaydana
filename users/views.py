@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -18,7 +17,6 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 return redirect('Inicio')  # Redirige a una vista específica
-        messages.error(request, 'Usuario o contraseña incorrectos')
     else:
         form = AuthenticationForm()
     
@@ -29,7 +27,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('Inicio')
+            return redirect('Login')
     else:
         form = UserRegisterForm()
     

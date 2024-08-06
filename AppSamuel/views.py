@@ -9,22 +9,23 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from AppSamuel.models import Autor, Libro, Categoria
 
-@login_required
+
 def inicio(request):
     query = request.GET.get('query', '')
     libros = Libro.objects.filter(titulo__icontains=query)
     autores = Autor.objects.filter(
     Q(nombre__icontains=query) | Q(apellido__icontains=query))
     categorias = Categoria.objects.filter(categoria__icontains=query)
+    
 
     return render(request, 'AppSamuel/index.html', {
         'query': query,
         'libros': libros,
         'autores': autores,
         'categorias': categorias
+        
     })
 
-@login_required
 def about(request):
     return render(request, 'AppSamuel/about.html')
 
