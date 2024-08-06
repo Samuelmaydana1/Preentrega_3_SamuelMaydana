@@ -31,14 +31,13 @@
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; height: auto;">
                                 <span style="display: flex; align-items: center;">
                                     {% if request.user.avatar.imagen %}
-                                        <img src="{{ request.user.avatar.imagen.url }}" alt="Avatar del usuario" height="30" width="30" style="margin-right: 5px;">
+                                        <img src="{{ user.avatar.imagen.url }}" alt="Avatar del usuario" height="30" width="30" style="margin-right: 5px;">
                                     {% else %}
                                         <img src="{% static 'AppSamuel/avatares/avatar-default.png' %}" alt="Avatar por defecto" height="30" width="30">
                                     {% endif %}
                                     {{ request.user.username }}
                                 </span>
                             </button>
-                            
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="{% url 'CambiarPass' %}">Cambiar contraseña</a></li>
                                 <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar perfil</a></li>

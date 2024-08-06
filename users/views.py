@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from users.forms import UserRegisterForm, UserEditForm
+from users.models import Avatar
+import os
 
 def login_request(request):
     if request.method == 'POST':
@@ -16,7 +18,7 @@ def login_request(request):
             user = authenticate(username=usuario, password=contrasenia)
             if user is not None:
                 login(request, user)
-                return redirect('Inicio')  # Redirige a una vista específica
+                return redirect('Inicio') 
     else:
         form = AuthenticationForm()
     
@@ -35,32 +37,56 @@ def register(request):
 
 @login_required
 def editar_perfil(request):
-
-    # El usuario para poder editar su perfil primero debe estar logueado.
-    # Al estar logueado, podremos encontrar dentro del request la instancia
-    # del usuario -> request.user
     usuario = request.user
 
     if request.method == 'POST':
-
-        miFormulario = UserEditForm(request.POST, instance=request.user)
+        miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
 
         if miFormulario.is_valid():
+            
+            imagen = miFormulario.cleaned_data.get('imagen')
+            eliminar_avatar = miFormulario.cleaned_data.get('eliminar_avatar')
 
-            miFormulario.save()
+            if imagen:
+                
+                avatar, creado = Avatar.objects.get_or_create(user=usuario)
 
-            # Retornamos al inicio una vez guardado los datos
-            return render(request, "AppSamuel/index.html")
+                
+                if not creado:
+                    
+                    if avatar.imagen and os.path.isfile(avatar.imagen.path):
+                        os.remove(avatar.imagen.path)
+
+                    
+                    avatar.imagen = imagen
+                    avatar.save()
+                else:
+                    
+                    avatar.imagen = imagen
+                    avatar.save()
+
+            if eliminar_avatar:
+                
+                avatar = Avatar.objects.filter(user=usuario).first()
+                if avatar:
+                    
+                    if avatar.imagen and os.path.isfile(avatar.imagen.path):
+                        os.remove(avatar.imagen.path)
+                    avatar.delete()
+
+            
+            return redirect('Inicio')
 
     else:
-        miFormulario = UserEditForm(instance=request.user)
+        miFormulario = UserEditForm(instance=usuario)
 
     return render(
         request,
         "users/editar_perfil.html",
         {
             "mi_form": miFormulario,
-            "usuario": usuario
+            "usuario": usuario,
+            "avatar": Avatar.objects.filter(user=usuario).first()  # Pasa el avatar actual a la plantilla
         }
     )
 
