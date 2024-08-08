@@ -18,7 +18,7 @@
         <div class="list-group-item d-flex justify-content-between align-items-center">
             <span>Categoria: {{ categoria.categoria }}</span>
             <div>
-                <a href="{% url 'DetalleCategoria' categoria.pk %}" class="btn btn-secondary btn-sm">Ver</a>
+                <a href="{% url 'DetalleCategoria' categoria.pk %}" class="btn btn-secondary btn-sm">Ver detalle</a>
                 <a href="{% url 'EditarCategoria' categoria.pk %}" class="btn btn-secondary btn-sm">Editar</a>
                 <a href="{% url 'BorrarCategoria' categoria.pk %}" class="btn btn-danger btn-sm">Borrar</a>
             </div>
