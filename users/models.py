@@ -6,7 +6,7 @@ class Avatar(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     imagen = models.ImageField(upload_to='avatares')
     class Meta:
-        unique_together = ('user',)
+        unique_together = (('user', 'imagen'),)
     
     def __str__(self):
         return f"{self.user} Avatar de {self.user.username}"
