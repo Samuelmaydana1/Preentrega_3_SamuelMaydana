@@ -41,10 +41,6 @@ class AutorListView(LoginRequiredMixin, ListView):
 class AutorDetailView(LoginRequiredMixin, DetailView):
     model = Autor
     template_name = "AppSamuel/autor_detalle.html"
-
-    def get_login_url(self):
-        return self.login_url
-
 class AutorCreateView(LoginRequiredMixin, CreateView):
     model = Autor
     template_name = "AppSamuel/autor_crear.html"

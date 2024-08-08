@@ -14,7 +14,7 @@ class Categoria(models.Model):
         return self.categoria
 
 class Libro(models.Model):
-    titulo = models.CharField(max_length=200)
+    titulo = models.CharField(max_length=200, verbose_name="Título")
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True, blank=True)
     año_de_publicacion = models.IntegerField()

@@ -46,6 +46,11 @@
                                         {% csrf_token %}
                                         <button type="submit" class="dropdown-item">Cerrar sesión</button>
                                     </form>
+                                    <script type="text/javascript">
+                                        function confirmLogout() {
+                                            return confirm('¿Estás seguro de que quieres cerrar sesión?');
+                                        }
+                                    </script>
                                 </li>
                             </ul>
                         </div>
